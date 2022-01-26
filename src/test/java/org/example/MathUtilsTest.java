@@ -53,12 +53,22 @@ public class MathUtilsTest {
     }
 
     @Test
+    @DisplayName("Testing multiply method")
+    void testMultiply(){
+        assertAll(
+                ()->assertEquals(4,mathUtils.multiply(2,2)),
+                ()-> assertEquals(0,mathUtils.multiply(2,0)),
+                ()-> assertEquals(-4,mathUtils.multiply(2,-2))
+        );
+    }
+
+    @Test
     @DisplayName("Testing divide method")
     void testDivide(){
         assertThrows(ArithmeticException.class,()->mathUtils.divide(1,0),"divide by zero shold tnrow");
     }
 
-    @Test
+    @RepeatedTest(3)
     @DisplayName("Testing Circle area method")
     void testComputeCircleArea(){
         assertEquals(314.1592653589793,mathUtils.computeCircleArea(10),"Should return the right value");
