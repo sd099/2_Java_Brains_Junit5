@@ -1,9 +1,6 @@
 package org.example;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,20 +36,38 @@ public class MathUtilsTest {
         mathUtils = new MathUtils();
     }
 
-    @Test
-    void testAdd (){
-        int expected = 2;
-        int actual = mathUtils.add(1,1);
-        assertEquals(expected,actual,"The add method should add two numbers");
+    @Nested
+    class testAdd{
+        @Test
+        @DisplayName("Testing add method for +ve")
+        void testPositive (){
+            int expected = 2;
+            int actual = mathUtils.add(1,1);
+            assertEquals(expected,actual,"The add method should add two numbers");
+        }
+        @Test
+        @DisplayName("Testing add method for -ve")
+        void testNegative (){
+            assertEquals(-2,mathUtils.add(-1,-1),"The add method should add two numbers");
+        }
     }
 
     @Test
+    @DisplayName("Testing divide method")
     void testDivide(){
         assertThrows(ArithmeticException.class,()->mathUtils.divide(1,0),"divide by zero shold tnrow");
     }
 
     @Test
+    @DisplayName("Testing Circle area method")
     void testComputeCircleArea(){
         assertEquals(314.1592653589793,mathUtils.computeCircleArea(10),"Should return the right value");
     }
+
+//    @Test
+//    @Disabled
+//    @DisplayName("Should Not Run")
+//    void testDisabled(){
+//        fail("Hello.....");
+//    }
 }
